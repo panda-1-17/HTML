@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>随机点餐</title>
+		<script>
+		/**
+		*@author
+		*@version 1.0
+		*/
+			//初始化点名数组
+			var names = ["米饭", "卤肉饭", "拌面", "老碗面", "麻辣烫",
+				"麻辣香锅", "炒凉皮", "花甲面", "螺蛳粉", "嘎嘣鸡", "剁椒鱼","吃屎吧"
+			];
+			
+			var timer = null;
+
+			function fun() {
+				var val = document.getElementById("click");
+				if(	val.value == "开始") {
+					val.value = "停止";
+						val.style.backgroundColor= "#CA2525";
+					//执行轮播操作
+					timer = setInterval("rotation()", 100);
+				} else {
+					val.value = "开始";
+					clearInterval(timer);
+					val.style.backgroundColor= "#89F221";
+				}
+			}
+
+			//生成0到max的随机整数
+			function Random(max) {
+				var num1 = Math.random() * max;
+				return Math.floor(num1);
+			}
+			//随机更换姓名
+			function rotation() {
+				var ranNum = Random(names.length);
+				document.getElementById("display").innerHTML = names[ranNum];
+			}
+		</script>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.top {
+				width: 100%;
+				height: 70px;
+			}
+			
+			.mid {
+				width: 550px;
+				height: 280px;
+				margin: auto;
+				padding: 15px;
+				border-radius: 25px;
+				background-color: #ff751a;
+			}
+			
+			.mid_top {
+				height: 55px;
+				background-color: #ff751a;
+			}
+			
+			.mid_mid {
+				width: 300px;
+				height: 87px;
+				margin: auto;
+				background-color: #A4A4A4;
+				border-radius: 15px;
+				vertical-align: middle;
+				line-height: 87px;
+			}
+			
+			.kk {
+				height: 26px;
+			}
+			
+			.button {
+				width: 145px;
+				height: 50px;
+				border-radius: 8px;
+				border: 0px;
+				background-color: #89F221;
+				font-size: 25px;
+				font-family: "微软雅黑";
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--顶层 -->
+		<div class="top"></div>
+
+		<!--中间层 -->
+		<div class="mid">
+			<!--中间层顶部 -->
+			<div class="mid_top"></div>
+			<!--中间层中间 -->
+			<div id="display" class="mid_mid" align="center" style="font-size:288%">随机点餐</div>
+			<div class="kk"></div>
+			<div class="mid_bottom" align="center"><input id="click" class="button" type="button" value="开始" onclick="fun()"/></div>
+		</div>
+	</body>
+</html>
